@@ -1,4 +1,5 @@
 require 'brained'
+require 'honeycomb-beeline'
 
 class NameService
   def new?(name)
@@ -6,20 +7,13 @@ class NameService
     brained_name = Brained::Name.new(name)
 
     if Name.exists?(name: brained_name.to_s)
+      Honeycomb.add_field('NameService.exists', brained_name)
       false
     else
+      Honeycomb.add_field('NameService.new', brained_name)
       Name.create(name: brained_name.to_s).save
       true
     end
-    #
-    # is_named = Name.find_by(name: name)
-    # puts
-    # puts is_named.inspect
-    # puts
-    # puts is_named.present?
-    # puts is_named.
-    #
-    # is_named.present? ? true : false
   end
 
   def default_name

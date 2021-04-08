@@ -31,6 +31,8 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'brained'
 gem 'translit', '~> 0.1.5' # TODO delete me
 
+gem 'honeycomb-beeline'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
